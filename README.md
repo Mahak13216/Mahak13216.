@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Dynamic Product Filter</title>
   <style>
     body {
@@ -21,19 +20,17 @@
   </style>
 </head>
 <body>
+  <h2>Product List</h2>
 
-  <div class="product-container">
-    <h2>Product List</h2>
-    <label for="categoryFilter">Filter by Category:</label>
-    <select id="categoryFilter">
-      <option value="All">All</option>
-      <option value="Clothing">Clothing</option>
-      <option value="Electronics">Electronics</option>
-      <option value="Books">Books</option>
-    </select>
+  <label for="categoryFilter">Filter by Category:</label>
+  <select id="categoryFilter">
+    <option value="All">All</option>
+    <option value="Clothing">Clothing</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Books">Books</option>
+  </select>
 
-    <div id="productList"></div>
-  </div>
+  <div id="productList"></div>
 
   <script>
     const products = [
@@ -50,7 +47,10 @@
 
     function displayProducts(category) {
       productList.innerHTML = '';
-      const filteredProducts = category === 'All' ? products : products.filter(p => p.category === category);
+      const filteredProducts = category === 'All'
+        ? products
+        : products.filter(p => p.category === category);
+
       filteredProducts.forEach(product => {
         const div = document.createElement('div');
         div.className = 'product';
@@ -59,12 +59,13 @@
       });
     }
 
+    // Initial display
     displayProducts('All');
 
+    // Update on filter change
     categoryFilter.addEventListener('change', function () {
       displayProducts(this.value);
     });
   </script>
-
 </body>
 </html>
